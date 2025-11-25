@@ -1,21 +1,32 @@
-﻿using CommunityToolkit.Maui;
+using System.Collections.ObjectModel;
 
 namespace PtMobile;
 
-public static class MauiProgram
+public partial class MainPage : ContentPage
 {
-    public static MauiApp CreateMauiApp()
+    public ObservableCollection<ArtworkModel> Artworks { get; set; }
+
+    public MainPage()
     {
-        var builder = MauiApp.CreateBuilder();
+        InitializeComponent();
 
-        builder
-            .UseMauiApp<App>()
-            .UseMauiCommunityToolkit()
-            .ConfigureFonts(fonts =>
-            {
-                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-            });
+        Artworks = new ObservableCollection<ArtworkModel>
+        {
+            new ArtworkModel { Image="drawfive.jpeg",  Title="Peach Tree in Blossom", Price="$950,000" },
+            new ArtworkModel { Image="drawfour.jpeg",  Title="A Wheatfield with Cypresses", Price="$1,920,000" },
+            new ArtworkModel { Image="drawone.jpeg",   Title="Starry Night Over the Rhône", Price="$800,000" },
+            new ArtworkModel { Image="drawseven.jpeg", Title="The Yellow House", Price="$1,300,000" },
+            new ArtworkModel { Image="drawsix.jpeg",   Title="Sunflower", Price="$1,300,000" },
+            new ArtworkModel { Image="drawthree.jpeg", Title="Sky with forest", Price="$1,300,000" }
+        };
 
-        return builder.Build();
+        BindingContext = this;
     }
+}
+
+public class ArtworkModel
+{
+    public string Image { get; set; }
+    public string Title { get; set; }
+    public string Price { get; set; }
 }
