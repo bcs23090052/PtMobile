@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -54,9 +54,9 @@
                 </toolkit:Expander.Content>
             </toolkit:Expander>
 
+
             <!-- C: Stats Grid -->
             <Grid ColumnSpacing="10">
-
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -64,103 +64,60 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- 1 -->
                 <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center">
                     <Label Text="$7.5m" TextColor="White" FontSize="18" FontAttributes="Bold"/>
                     <Label Text="Record" TextColor="#AAAAAA" FontSize="12"/>
                 </VerticalStackLayout>
 
-                <!-- 2 -->
                 <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center">
                     <Label Text="$3.5m" TextColor="White" FontSize="18" FontAttributes="Bold"/>
                     <Label Text="Average" TextColor="#AAAAAA" FontSize="12"/>
                 </VerticalStackLayout>
 
-                <!-- 3 -->
                 <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center">
                     <Label Text="+598%" TextColor="White" FontSize="18" FontAttributes="Bold"/>
                     <Label Text="General" TextColor="#AAAAAA" FontSize="12"/>
                 </VerticalStackLayout>
 
-                <!-- 4 -->
                 <VerticalStackLayout Grid.Column="3" HorizontalOptions="Center">
                     <Label Text="12" TextColor="White" FontSize="18" FontAttributes="Bold"/>
                     <Label Text="Items" TextColor="#AAAAAA" FontSize="12"/>
                 </VerticalStackLayout>
-
             </Grid>
 
-            <!-- Section Title -->
+
+            <!-- Title -->
             <Label Text="Other Van Gogh Works"
                    TextColor="White"
                    FontSize="18"
                    Margin="0,10,0,5"/>
 
-            <!-- D: Artwork Grid -->
-            <Grid ColumnSpacing="10" RowSpacing="15">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+            <!-- D: Artwork Grid — using CollectionView -->
+            <CollectionView ItemsSource="{Binding Artworks}">
+                <CollectionView.ItemsLayout>
+                    <!-- 2 Columns -->
+                    <GridItemsLayout Orientation="Vertical" Span="2"/>
+                </CollectionView.ItemsLayout>
 
-                <!-- 1 -->
-                <Frame Grid.Column="0"
-                       Grid.Row="0"
-                       BackgroundColor="#222222"
-                       CornerRadius="10"
-                       HasShadow="False">
-                    <VerticalStackLayout Spacing="5">
-                        <Image Source="art1.jpg" Aspect="AspectFill" HeightRequest="140"/>
-                        <Label Text="Peach Tree in Blossom" TextColor="White"/>
-                        <Label Text="$950,000" TextColor="#bbbbbb" FontSize="12"/>
-                    </VerticalStackLayout>
-                </Frame>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="#222222" CornerRadius="10" Padding="0" Margin="5">
+                            <VerticalStackLayout Spacing="5">
+                                <Image Source="{Binding Image}" Aspect="AspectFill" HeightRequest="140"/>
+                                <Label Text="{Binding Title}" TextColor="White" Margin="10,0,10,0"/>
+                                <Label Text="{Binding Price}" TextColor="#bbbbbb" FontSize="12" Margin="10,0,10,10"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-                <!-- 2 -->
-                <Frame Grid.Column="1"
-                       Grid.Row="0"
-                       BackgroundColor="#222222"
-                       CornerRadius="10"
-                       HasShadow="False">
-                    <VerticalStackLayout Spacing="5">
-                        <Image Source="art2.jpg" Aspect="AspectFill" HeightRequest="140"/>
-                        <Label Text="Cafe Terrace at Night" TextColor="White"/>
-                        <Label Text="$1,920,000" TextColor="#bbbbbb" FontSize="12"/>
-                    </VerticalStackLayout>
-                </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
 
-                <!-- 3 -->
-                <Frame Grid.Column="0"
-                       Grid.Row="1"
-                       BackgroundColor="#222222"
-                       CornerRadius="10"
-                       HasShadow="False">
-                    <VerticalStackLayout Spacing="5">
-                        <Image Source="art3.jpg" Aspect="AspectFill" HeightRequest="140"/>
-                        <Label Text="Some Other Work" TextColor="White"/>
-                        <Label Text="$800,000" TextColor="#bbbbbb" FontSize="12"/>
-                    </VerticalStackLayout>
-                </Frame>
+</ContentPage>
 
-                <!-- 4 -->
-                <Frame Grid.Column="1"
-                       Grid.Row="1"
-                       BackgroundColor="#222222"
-                       CornerRadius="10"
-                       HasShadow="False">
-                    <VerticalStackLayout Spacing="5">
-                        <Image Source="art4.jpg" Aspect="AspectFill" HeightRequest="140"/>
-                        <Label Text="Another Painting" TextColor="White"/>
-                        <Label Text="$1,300,000" TextColor="#bbbbbb" FontSize="12"/>
-                    </VerticalStackLayout>
-                </Frame>
-
-            </Grid>
 
         </VerticalStackLayout>
     </ScrollView>
