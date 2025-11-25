@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="PtMobile/PtMobile.csproj">
+    <Deploy />
+  </Project>
+</Solution>
